@@ -2,8 +2,6 @@
 
 const { response } = require("express");
 
-
-
 const logoutButton = new LogoutButton();
 logoutButton.action = () =>{
     ApiConnector.logout((response) =>{
@@ -22,14 +20,55 @@ let current = ApiConnector.current((response) =>{
     }
 
 });
-const rateBoard = new RatesBoard;
-const timer = setInterval( function getExchangeRate(){
+const rateBoard = new RatesBoard();
+function getExchangeRate(){
     ApiConnector.getStocks((response) => {
         if(response.success){
-          rateBoard.clearTable(response.data);
+          rateBoard.clearTable();
           rateBoard.fillTable(response.data);
         }
-        return getExchangeRate
+        else{
+            console.error('Ошибка вывода курсов валют');
+        }
     });
-},60000);
-    
+}
+getExchangeRate();
+setInterval(getExchangeRate(),60000);
+const moneyManger = new MoneyManger();
+moneyManger.addMoneyCallback() = (data) =>{
+    ApiConnector.addMoney(data,(response) =>{
+        if(response.success){
+            ProfileWidget.showProfile(response.data);
+            moneyManger.setMessage(true, 'Пополнения балланса успешно');
+        }else{
+            moneyManger.setMessage(false, 'Произошла ошибка при пополнение баланка');
+         }
+
+});
+}
+moneyManger.conversionMoneyCallback() = (data) =>{
+    ApiConnector.convertMoney(data,(response) => {
+        if(response.success){
+            ProfileWidget.showProfile(response.data);
+            moneyManger.setMessage(true,'Конвертация прошла успешно');
+       
+        }else{
+            moneyManger.setMessage(false, 'Конверт ация не произошла');
+        }
+    })
+}
+moneyManger.sendMoneyCallback() = (data) =>{
+    ApiConnector.transferMoney(data,(response) =>{
+        if(response.success){
+            ProfileWidget.showProfile(response.data);
+            moneyManger.setMessage(true,'Трансфер прошел успешно');
+        }else{
+            moneyManger.setMessage(false,'Трансфер не прошел');
+        }
+    })
+}
+
+       
+ 
+
+
