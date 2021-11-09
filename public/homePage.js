@@ -25,7 +25,7 @@ function getExchangeRate(){
     });
 }
 getExchangeRate();
-setInterval(getExchangeRate(),60000);
+setInterval(getExchangeRate,60000);
 
 const moneyManger = new MoneyManger();
 moneyManger.addMoneyCallback() = (data) =>{
