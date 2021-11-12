@@ -65,7 +65,7 @@ moneyManger.sendMoneyCallback() = (data) =>{
     if(serverResponse.success){    
         favoritesWidget.clearTable();
          favoritesWidget.fillTable(serverResponse.data);
-         favoritesWidget.updateUsersList(serverResponse.data);
+         moneyManger.updateUsersList(serverResponse.data);
     }
      
  });
@@ -74,7 +74,7 @@ moneyManger.sendMoneyCallback() = (data) =>{
        if(serverResponse.success){
         favoritesWidget.clearTable();
         favoritesWidget.fillTable(serverResponse.data);
-        favoritesWidget.updateUsersList(serverResponse.data);
+        moneyManger.updateUsersList(serverResponse.data);
        }else{
            favoritesWidget.setMessage(`Не получилось добавить в Избранные ${serverResponse.error}`);
        }
@@ -85,7 +85,7 @@ moneyManger.sendMoneyCallback() = (data) =>{
          if(serverResponse.success){
             favoritesWidget.clearTable();
             favoritesWidget.fillTable(serverResponse.data);
-            favoritesWidget.updateUsersList(serverResponse.data);
+            moneyManger.updateUsersList(serverResponse.data);
            }else{
                favoritesWidget.setMessage(`Не получилось удалить из Избраного ${serverResponse.error}`);
          }

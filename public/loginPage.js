@@ -1,21 +1,21 @@
 'use srtict'
 const userForm = new UserForm();
 userForm.loginFormCallback = (data) =>{
-  ApiConnector.login(data,(response) => {
-if(response.success){
+  ApiConnector.login(data,(serverResponse) => {
+if(serverResponse.success){
   location.reload();
 
 }else{
-  userForm.setLoginErrorMessage(`Ошибка ввода : ${response.error}`);
+  userForm.setLoginErrorMessage(`Ошибка ввода : ${serverResponse.error}`);
 }
   })
 };
 userForm.registerFormCallback = (data) =>{
-  ApiConnector.register(data,(response) =>{
-    if(response.success){
+  ApiConnector.register(data,(serverResponse) =>{
+    if(serverResponse.success){
       location.reload();
     }else{
-      userForm.setRegisterErrorMessage(`Ошибка регистрации ${data.login} ${response.error}`);
+      userForm.setRegisterErrorMessage(`Ошибка регистрации ${data.login} ${serverResponse.error}`);
     }
   })
 };
