@@ -28,7 +28,7 @@ getExchangeRate();
 setInterval(getExchangeRate,60000);
 
 const moneyManger = new MoneyManger();
-moneyManger.addMoneyCallback() = (data) =>{
+moneyManger.addMoneyCallback = (data) =>{
     ApiConnector.addMoney(data,(serverResponse) =>{
         if(serverResponse.success){
             ProfileWidget.showProfile(serverResponse.data);
@@ -38,8 +38,8 @@ moneyManger.addMoneyCallback() = (data) =>{
          }
 
 });
-}
-moneyManger.conversionMoneyCallback() = (data) =>{
+} 
+moneyManger.conversionMoneyCallback = (data) =>{
     ApiConnector.convertMoney(data,(serverResponse) => {
         if(serverResponse.success){
             ProfileWidget.showProfile(serverResponse.data);
@@ -50,7 +50,7 @@ moneyManger.conversionMoneyCallback() = (data) =>{
         }
     })
 }
-moneyManger.sendMoneyCallback() = (data) =>{
+moneyManger.sendMoneyCallback = (data) =>{
     ApiConnector.transferMoney(data,(serverResponse) =>{
         if(serverResponse.success){
             ProfileWidget.showProfile(serverResponse.data);
@@ -69,7 +69,7 @@ moneyManger.sendMoneyCallback() = (data) =>{
     }
      
  });
- favoritesWidget.addUserCallback() = (data) =>{
+ favoritesWidget.addUserCallback = (data) =>{
      ApiConnector.addUserToFavorites(data ,(serverResponse) =>{
        if(serverResponse.success){
         favoritesWidget.clearTable();
@@ -80,7 +80,7 @@ moneyManger.sendMoneyCallback() = (data) =>{
        }
      });
  }
- favoritesWidget.removeUserCallback() = (data) =>{
+ favoritesWidget.removeUserCallback = (data) =>{
      ApiConnector.removeUserFromFavorites(data,(serverResponse) =>{
          if(serverResponse.success){
             favoritesWidget.clearTable();
